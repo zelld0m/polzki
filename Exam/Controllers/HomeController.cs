@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Exam.Service;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Exam.Models;
 
@@ -12,7 +9,15 @@ namespace Exam.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+
+            var str = ApiService.Get("https://api.polzki.com/api/events?key=01cb716174f94156bd7d28c7faafedec");
+
+           // var jsonStr = "";
+           // var strPost = ApiService.Post("https://api.polzki.com/api/events?key=01cb716174f94156bd7d28c7faafedec", jsonStr);
+
+            EventsResponse eventsResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<EventsResponse>(str == null ? "" : str);
+
+            return View(eventsResponse);
         }
 
         public IActionResult About()
