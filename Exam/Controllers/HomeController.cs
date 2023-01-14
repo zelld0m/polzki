@@ -7,7 +7,7 @@ namespace Exam.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Event()
         {
 
             var str = ApiService.Get("https://api.polzki.com/api/events?key=01cb716174f94156bd7d28c7faafedec");
@@ -20,11 +20,17 @@ namespace Exam.Controllers
             return View(eventsResponse);
         }
 
-        public IActionResult About()
+        public IActionResult Attendee()
         {
-            ViewData["Message"] = "Your application description page.";
 
-            return View();
+            var str = ApiService.Get("https://api.polzki.com/api/attendees?key=01cb716174f94156bd7d28c7faafedec");
+
+            // var jsonStr = "";
+            // var strPost = ApiService.Post("https://api.polzki.com/api/attendees?key=01cb716174f94156bd7d28c7faafedec", jsonStr);
+
+            AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
+
+            return View(attendeeResponse);
         }
 
         public IActionResult Contact()

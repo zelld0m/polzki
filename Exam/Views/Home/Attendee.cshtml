@@ -1,0 +1,28 @@
+﻿@model Exam.Models.AttendeeResponse;
+@{
+    ViewData["Title"] = "Attendee";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Register Date</td>
+            </tr>
+            
+          
+            @foreach (var item in Model.Data)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.RegisterDate</td>
+                   
+                </tr>
+            }
+            @Html.TextBox
+        </table>
+    </div>
+</div>
