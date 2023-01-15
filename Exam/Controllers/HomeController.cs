@@ -8,7 +8,7 @@ namespace Exam.Controllers
 {
     public class HomeController : Controller
     {
-        public string key = "71442d3693a54bd7bd54468d9d01f2fd"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
+        public string key = "7190cf118dc540bdabc962ea53c69722"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
         
 
         public IActionResult Event()
