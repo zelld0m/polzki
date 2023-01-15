@@ -1,0 +1,163 @@
+﻿@model Exam.Models.AttendeeResponse;
+
+@{
+    ViewData["Title"] = "Attendees";
+}
+
+
+
+<label >KEY:</label> @ViewBag.key
+<div class="row">
+
+    Displaying using MVC
+<br />
+KEY SAVED FROM Controller
+<br />
+    <div class="col-lg-12">
+        <table>
+            <br />
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Register Date</td>
+                <td></td>
+                 
+                <td>EventID</td>
+                <td>Event</td>
+            </tr>
+            
+            @foreach (var item in Model.Data)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.RegisterDate</td>
+                    <td></td>
+                    <td>@item.Event.ID</td>    
+                    <td>@item.Event.EventName</td>
+                    
+                </tr>
+            }
+            
+        </table>
+        <br />
+       <h1> BELOW DATA IS Controlled by javascript</h1>
+        <br><br>
+        <!DOCTYPE html>
+        <html>
+        <body>
+            <form action="/action_page.php">
+
+                 <h3>Add ATTENDEE</h3>
+             
+
+                <label>Input AttendeeName:</label>
+                <input type="text" id="createAttendeeName" name="AttendeeName">
+                <br>
+                <br>
+
+                <label>Input Email:</label>
+                <input type="text" id="createEmail" name="EventID">
+
+                <br>
+                <br>
+
+                <label>EventID:</label>
+                <input type="text" id="newAttendeeEventID" name="EventID">
+
+                <br>
+                <input type="button" value="Register Attendee" onclick="AddAttendee();">
+                <br>
+                <br/>
+
+                <h3>Update ATTENDEE</h3>
+                <label>Insert ID To Change Name:</label>
+                <input type="text" id="AttendeeID" name="AttendeeID">
+                <br>
+
+                <label>Input New Attendee:</label>
+                <input type="text" id="AttendeeName" name="AttendeeName"><br>
+                <br>
+
+                <label>Input EventID:</label>
+                <input type="text" id="EventID" name="EventID"><br>
+                <br>
+
+                <input type="button" value="Click To Change Attendee" onclick="UpdateAttendee();">
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <h3>Delete ATTENDEE</h3>
+                <label>Insert ID To Delete:</label>
+                <input type="text" id="DeleteIdTb" name="Delete"><br>
+                
+                <br>
+                <input type="button" value="Delete" onclick="DeleteAttendee();">
+
+                <br>
+                <br>
+                <br>
+                <br>
+                
+                <h3>FIND ATTENDEE</h3>
+                <label>Attendee ID:</label>
+                <input type="text" id="AttendeeIDtb" name="AttendeeIDtbName" title="attb"><br>
+                <br>
+                <input type="button" value="Search Attendee" onclick="FindAttendee();" />
+                </a>
+              
+            </form>
+            </body>
+        </html>
+ 
+
+    </div>
+</div>
+@section scripts {
+
+    <script type="text/javascript">
+        var viewBagKey = '@ViewBag.key'   // KEY FROM CONTROLLER 
+        let key = viewBagKey.toString();
+
+
+        function AddAttendee() {
+            let cAttendeeName = document.getElementById("createAttendeeName").value; // Add Name
+            let cAttendeeEmail = document.getElementById("createEmail").value; // Create By inserting Registered Attendee
+            let eventID = document.getElementById("newAttendeeEventID").value; //  Register Attendee to Event by Using EventID
+
+            alert("Add Attendee Using EMAIL: " + cAttendeeName + cAttendeeEmail + eventID);
+            location.replace("https://api.polzki.com/api/addattendee?key=" + key + "&Name=" + cAttendeeName + "&Email=" + cAttendeeEmail + "&EventID=" + eventID + "")
+            //https://api.polzki.com/api/addattendee?key=[YOUR_KEY_HERE]&Name=[ATTENDEE_NAME]&Email=[EMAILADDRESS]&EventID=[EVENTID]
+        }
+        function UpdateAttendee() {
+            let attendeeID = document.getElementById("AttendeeID").value; //Replace AttendeeID By inserting Registered Attendee
+            let attendeeName = document.getElementById("AttendeeName").value; // Replace Name
+            let eventID = document.getElementById("EventID").value; // Replace Event by Using EventID
+
+            alert("UPDATING Attendee ID#: " + attendeeID + " " + attendeeName + " " + eventID);
+            location.replace("https://api.polzki.com/api/updateattendee?key=" + key + "&AttendeeID=" + attendeeID + "&Name=" + attendeeName + "&EventID="+ eventID + "")
+            //https://api.polzki.com/api/updateattendee?key=[YOUR_KEY_HERE]&AttendeeID=[ATTENDEEID]&Name=[ATTENDEE_NAME]&EventID=[EVENTID]
+        }
+        function FindAttendee() {
+            
+            let attendeeID = document.getElementById("AttendeeIDtb").value;
+            alert("Finding Attendee Using ID: " + attendeeID);
+            location.replace("https://api.polzki.com/api/attendee?key=" + key + "&attendeeid=" + attendeeID + "")
+        }
+        function DeleteAttendee() {
+            let attendeeID = document.getElementById("DeleteIdTb").value;
+            alert("DELETING ATTENDEE ID: " + attendeeID);
+            location.replace("https://api.polzki.com/api/deleteattendee?key=" + key + "&attendeeid=" + attendeeID + "")
+        }
+         
+
+    </script>
+}
+
+
+

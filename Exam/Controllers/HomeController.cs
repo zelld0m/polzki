@@ -8,7 +8,9 @@ namespace Exam.Controllers
 {
     public class HomeController : Controller
     {
-        string key = "01cb716174f94156bd7d28c7faafedec"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
+        public string key = "71442d3693a54bd7bd54468d9d01f2fd"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
+        
+
         public IActionResult Event()
         {
 
@@ -23,23 +25,23 @@ namespace Exam.Controllers
             return View(eventsResponse);
         }
 
-        public IActionResult Attendee()
+        public IActionResult Attendees()
         {
-
+            ViewBag.key = key;
             var str = ApiService.Get("https://api.polzki.com/api/attendees?key="+key);
 
             AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
-
+            // error on getting Attendee Event array value  FIXED!!
             return View(attendeeResponse);
         }
         //public IActionResult UpdateAttendee()
         //{
         //     var jsonStr = "";
-        //     var strPost = ApiService.Post("https://api.polzki.com/api/updateattendee?key="+key+"&AttendeeID=[ATTENDEEID]&Name=[ATTENDEE_NAME]&EventID=[EVENTID]", jsonStr);
+        //     var strPost = ApiService.Post("https://api.polzki.com/api/updateattendees?key="+key+"&AttendeeID=[ATTENDEEID]&Name=[ATTENDEE_NAME]&EventID=[EVENTID]", jsonStr);
 
-        //    AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(strPost == null ? "" : strPost);
+        //    AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(strPost == null ? "" : strPost);
 
-        //    return View(attendeeResponse);
+        //    return View(attendeesResponse);
         //}
 
         public IActionResult Contact()
