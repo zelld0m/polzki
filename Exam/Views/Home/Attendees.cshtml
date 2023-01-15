@@ -9,7 +9,7 @@
 <label >KEY:</label> @ViewBag.key
 <div class="row">
 
-    Displaying using MVC
+Displaying using MVC
 <br />
 KEY SAVED FROM Controller
 <br />
@@ -17,14 +17,13 @@ KEY SAVED FROM Controller
         <table>
             <br />
             <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Register Date</td>
-                <td></td>
-                 
-                <td>EventID</td>
-                <td>Event</td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                
+                <th>Register Date</th>
+                <th>EventID</th>
+                <th>Event</th>
             </tr>
             
             @foreach (var item in Model.Data)
@@ -34,7 +33,6 @@ KEY SAVED FROM Controller
                     <td>@item.Name</td>
                     <td>@item.Email</td>
                     <td>@item.RegisterDate</td>
-                    <td></td>
                     <td>@item.Event.ID</td>    
                     <td>@item.Event.EventName</td>
                     
@@ -43,68 +41,82 @@ KEY SAVED FROM Controller
             
         </table>
         <br />
-       <h1> BELOW DATA IS Controlled by javascript</h1>
+       <h1> Below Data Is Controlled by javascript</h1>
         <br><br>
         <!DOCTYPE html>
         <html>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
         <body>
             <form action="/action_page.php">
 
-                 <h3>Add ATTENDEE</h3>
+                 <h3>Add Attendee</h3>
              
 
                 <label>Input AttendeeName:</label>
                 <input type="text" id="createAttendeeName" name="AttendeeName">
                 <br>
-                <br>
-
+                
                 <label>Input Email:</label>
                 <input type="text" id="createEmail" name="EventID">
-
-                <br>
                 <br>
 
                 <label>EventID:</label>
                 <input type="text" id="newAttendeeEventID" name="EventID">
-
+                <br>
                 <br>
                 <input type="button" value="Register Attendee" onclick="AddAttendee();">
                 <br>
                 <br/>
 
-                <h3>Update ATTENDEE</h3>
+                <h3>Update Attendee</h3>
                 <label>Insert ID To Change Name:</label>
                 <input type="text" id="AttendeeID" name="AttendeeID">
                 <br>
 
                 <label>Input New Attendee:</label>
-                <input type="text" id="AttendeeName" name="AttendeeName"><br>
+                <input type="text" id="AttendeeName" name="AttendeeName">
                 <br>
 
                 <label>Input EventID:</label>
                 <input type="text" id="EventID" name="EventID"><br>
                 <br>
 
-                <input type="button" value="Click To Change Attendee" onclick="UpdateAttendee();">
+                <input type="button" value="Update Attendee" onclick="UpdateAttendee();">
 
                 <br>
                 <br>
                 <br>
                 <br>
 
-                <h3>Delete ATTENDEE</h3>
+                <h3>Delete Attendee</h3>
                 <label>Insert ID To Delete:</label>
                 <input type="text" id="DeleteIdTb" name="Delete"><br>
                 
                 <br>
-                <input type="button" value="Delete" onclick="DeleteAttendee();">
+                <input type="button" value="Delete Attendee" onclick="DeleteAttendee();">
 
                 <br>
                 <br>
                 <br>
                 <br>
                 
-                <h3>FIND ATTENDEE</h3>
+                <h3>Find Attendee</h3>
                 <label>Attendee ID:</label>
                 <input type="text" id="AttendeeIDtb" name="AttendeeIDtbName" title="attb"><br>
                 <br>
