@@ -5,6 +5,6 @@ You can get new key from "https://api.polzki.com/home/eventsapidocs"     just cl
 Then paste it on  "polzki/Exam/Controllers/HomeController.cs"
 Replace the value on 
 
-public string key = "71442d3693a54bd7bd54468d9d01f2fd"
+public string key = "a6712035e2524cf4be3cf576bc931d54"
 to
 public string key = "Paste Generated Key here"
