@@ -8,7 +8,7 @@ namespace Exam.Controllers
 {
     public class HomeController : Controller
     {
-        public string key = "a6712035e2524cf4be3cf576bc931d54"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
+        public string key = "33ac2ffc953b409aaee5381cb865d2d5"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
         
 
         public IActionResult Event()
@@ -20,7 +20,7 @@ namespace Exam.Controllers
            // var jsonStr = "";
            // var strPost = ApiService.Post("https://api.polzki.com/api/events?key=01cb716174f94156bd7d28c7faafedec", jsonStr);
 
-            EventsResponse eventsResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<EventsResponse>(str == null ? "" : str);
+            EventsResponse eventsResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<EventsResponse>(str == null ? "" : str); //if status fails NEW KEY IS NEEDED
 
             return View(eventsResponse);
         }
