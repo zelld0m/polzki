@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 using System;
 using RestSharp;
 using RestSharp.Serializers;
+using System.Net;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Exam.Controllers
 {
@@ -19,26 +22,38 @@ namespace Exam.Controllers
 
         public IActionResult Event()
         {
-            {
-                #region Event Working
-                var str = ApiService.Get("https://api.polzki.com/api/events?key=" + key);
 
-                // FOR POST
-                // var jsonStr = "";
-                // var strPost = ApiService.Post("https://api.polzki.com/api/events?key=01cb716174f94156bd7d28c7faafedec", jsonStr);
+            #region Event Working
+            var str = ApiService.Get("https://api.polzki.com/api/events?key=" + key);
 
-                EventsResponse eventsResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<EventsResponse>(str == null ? "" : str); //if status fails NEW KEY IS NEEDED
-                return View(eventsResponse);
-                #endregion
-            }
+            // FOR POST
+            // var jsonStr = "";
+            // var strPost = ApiService.Post("https://api.polzki.com/api/events?key=01cb716174f94156bd7d28c7faafedec", jsonStr);
 
-            #region IRest
-            //var client = new RestClient("https://api.polzki.com/api/events?key=33ac2ffc953b409aaee5381cb865d2d5");
-            ////client.AcceptedContent = -1;
-            //var request = new RestRequest(Method.GET);
-            //EventsResponse response = client.(request);
+            EventsResponse eventsResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<EventsResponse>(str == null ? "" : str); //if status fails NEW KEY IS NEEDED
+            return View(eventsResponse);
+            #endregion
+
+
+            #region IRest SAMPLE
+            //var client = new RestClient("https://api.myorg.com");
+
+            //var options = new RestClientOptions("https://api.myorg.com")
+            //{
+            //    ThrowOnAnyError = true,
+            //    Timeout = 1000
+            //};
+
+            //var client2 = new RestClient(options);
+            //return View(client2);
+            #endregion
+            #region IRest Test 1 
+            //var client = new RestClient("https://api.polzki.com/api/events?key=56685b0714de429f87d319ddcda8005b");        
+            //var request = new RestRequest("api.polzki.com/api",Method.Get);
+            ////EventsResponse response =
+            //EventsResponse response = client.ExecuteGet<List<Event>>(request).Data;
             ////Console.WriteLine(response.Content);
-            //return View(eventsResponse);
+            //return View(response);
             #endregion
         }
 
@@ -53,12 +68,21 @@ namespace Exam.Controllers
         }
         public IActionResult UpdateAttendee()
         {
-            var jsonStr = "";
-            var strPost = ApiService.Post("https://api.polzki.com/api/updateattendees?key=" + key + "&AttendeeID=[ATTENDEEID]&Name=[ATTENDEE_NAME]&EventID=[EVENTID]", jsonStr);
+            //var str = ApiService.Get("https://api.polzki.com/api/updateattendees?key=" + key + "&AttendeeID="+ AttendeeId + "& Name="+ AttendeeName + "&EventID="+ EventID + "");
 
-            AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(strPost == null ? "" : strPost);
+            //AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
 
-            return View(attendeesResponse);
+            //return View(attendeesResponse);
+
+            #region for POST ONLY
+            //var jsonStr = "";
+            //var strPost = ApiService.Post("https://api.polzki.com/api/updateattendees?key=" + key + "&AttendeeID=[ATTENDEEID]&Name=[ATTENDEE_NAME]&EventID=[EVENTID]", jsonStr);
+
+            //AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(strPost == null ? "" : strPost);
+
+            //return View(attendeesResponse);
+            return View();
+            #endregion
         }
 
         public IActionResult SingleAttendee()
