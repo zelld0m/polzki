@@ -11,8 +11,8 @@ using RestSharp.Serializers;
 using System.Net;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace Exam.Controllers
 {
     public class HomeController : Controller
@@ -80,9 +80,27 @@ namespace Exam.Controllers
         {
             //var str = ApiService.Get("https://api.polzki.com/api/updateattendees?key=" + key + "&AttendeeID="+ AttendeeId + "& Name="+ AttendeeName + "&EventID="+ EventID + "");
 
+
             //AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
 
             //return View(attendeesResponse);
+
+
+            //AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
+
+            //return View(attendeesResponse);
+
+            #region for POST ONLY
+            //var jsonStr = "";
+            //var strPost = ApiService.Post("https://api.polzki.com/api/updateattendees?key=" + key + "&AttendeeID=[ATTENDEEID]&Name=[ATTENDEE_NAME]&EventID=[EVENTID]", jsonStr);
+
+            //AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(strPost == null ? "" : strPost);
+
+            //return View(attendeesResponse);
+            return View();
+            #endregion
+        }
+
 
             #region for POST ONLY
             //var jsonStr = "";
