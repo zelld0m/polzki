@@ -11,6 +11,7 @@ using RestSharp.Serializers;
 using System.Net;
 using System.Collections.Generic;
 using System.Threading;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Exam.Controllers
 {
@@ -66,6 +67,15 @@ namespace Exam.Controllers
             // error on getting Attendee Event array value  FIXED!!
             return View(attendeeResponse);
         }
+        public IActionResult Attendees2()
+        {
+            ViewBag.key = key;
+            var str = ApiService.Get("https://api.polzki.com/api/attendees?key=" + key);
+
+            AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
+            // error on getting Attendee Event array value  FIXED!!
+            return View(attendeeResponse);
+        }
         public IActionResult UpdateAttendee()
         {
             //var str = ApiService.Get("https://api.polzki.com/api/updateattendees?key=" + key + "&AttendeeID="+ AttendeeId + "& Name="+ AttendeeName + "&EventID="+ EventID + "");
@@ -88,14 +98,14 @@ namespace Exam.Controllers
 
         public IActionResult SingleAttendee(String attendeeID)
         {
-        //https://api.polzki.com/api/attendee?key={{Key}}&attendeeid=63c40b89c921e241f5d420d2
+            //https://api.polzki.com/api/attendee?key={{Key}}&attendeeid=63cbe9312437a73b71357db4
             ViewBag.key = key;
-            var str = ApiService.Get("https://api.polzki.com/api/attendee?key=9adea4c11d66444d958bb21b53fe197e&attendeeid=63cbe9312437a73b71357db4");
+            var str = ApiService.Get("https://api.polzki.com/api/attendee?key=f0ca0204016a40d8af03ce06ff38e0f4&attendeeid=63cbe9312437a73b71357db4");
 
-            Attendee SingleAttendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<Attendee>(str == null ? "" : str);
+            Models.SingleAttendee SingleAttendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.SingleAttendee>(str == null ? "" : str);
             //AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
 
-            return View(SingleAttendeeResponse);
+            return PartialView(SingleAttendeeResponse);
         }   
         public IActionResult Contact()
         {
