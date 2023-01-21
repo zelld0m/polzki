@@ -2,3 +2,19 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+$(function(){
+    console.log("Page is ready");
+    $("#findAttendeeBtn").click(function () {
+        event.preventDefault();
+        console.log("Find Attendee Button is clicked");
+        $.ajax({
+            type: "GET",
+            url: 'SingleAttendee',
+            data: $("form").serialize(),
+            success: function (data) {
+                console.log(data);
+                $("attendeeInformationArea").html(data);
+            }
+        });
+    });
+});

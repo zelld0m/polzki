@@ -11,13 +11,17 @@ using RestSharp.Serializers;
 using System.Net;
 using System.Collections.Generic;
 using System.Threading;
+<<<<<<< master
+=======
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+>>>>>>> Branch2
 
 namespace Exam.Controllers
 {
     public class HomeController : Controller
     {
         
-        public string key = "56685b0714de429f87d319ddcda8005b"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
+        public string key = "f0ca0204016a40d8af03ce06ff38e0f4"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
         
 
         public IActionResult Event()
@@ -66,9 +70,19 @@ namespace Exam.Controllers
             // error on getting Attendee Event array value  FIXED!!
             return View(attendeeResponse);
         }
+        public IActionResult Attendees2()
+        {
+            ViewBag.key = key;
+            var str = ApiService.Get("https://api.polzki.com/api/attendees?key=" + key);
+
+            AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
+            // error on getting Attendee Event array value  FIXED!!
+            return View(attendeeResponse);
+        }
         public IActionResult UpdateAttendee()
         {
             //var str = ApiService.Get("https://api.polzki.com/api/updateattendees?key=" + key + "&AttendeeID="+ AttendeeId + "& Name="+ AttendeeName + "&EventID="+ EventID + "");
+<<<<<<< master
 
             //AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
 
@@ -84,20 +98,36 @@ namespace Exam.Controllers
             return View();
             #endregion
         }
+=======
 
-        public IActionResult SingleAttendee()
-        {
-            ////From Postman Rest Sharp
-            //var client = new Attendee("https://api.polzki.com/api/attendee?key=33ac2ffc953b409aaee5381cb865d2d5&attendeeid=63c40b89c921e241f5d420d2");
-            //client.Timeout = -1;
-            //var request = new RestRequest(Method.GET);
-            //var body = @"";
-            //request.AddParameter("text/plain", body, ParameterType.RequestBody);
-            //IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
+            //AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
 
+            //return View(attendeesResponse);
+>>>>>>> Branch2
+
+            #region for POST ONLY
+            //var jsonStr = "";
+            //var strPost = ApiService.Post("https://api.polzki.com/api/updateattendees?key=" + key + "&AttendeeID=[ATTENDEEID]&Name=[ATTENDEE_NAME]&EventID=[EVENTID]", jsonStr);
+
+            //AttendeeResponse attendeesResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(strPost == null ? "" : strPost);
+
+            //return View(attendeesResponse);
+            #endregion
             return View();
+        
         }
+
+        public IActionResult SingleAttendee(String attendeeID)
+        {
+            //https://api.polzki.com/api/attendee?key={{Key}}&attendeeid=63cbe9312437a73b71357db4
+            ViewBag.key = key;
+            var str = ApiService.Get("https://api.polzki.com/api/attendee?key=f0ca0204016a40d8af03ce06ff38e0f4&attendeeid=63cbe9312437a73b71357db4");
+
+            Models.SingleAttendee SingleAttendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.SingleAttendee>(str == null ? "" : str);
+            //AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
+
+            return PartialView(SingleAttendeeResponse);
+        }   
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

@@ -1,0 +1,33 @@
+﻿@model Exam.Models.SingleAttendee;
+<div class="row">
+    <div class="col-lg-12">
+        <table>
+            <br />
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Register Date</th>
+                <th>EventID</th>
+                <th>Event</th>
+            </tr>
+
+
+            <tr>
+                <td>@Model.Data.ID</td>
+                <td>@Model.Data.Name</td>
+                <td>@Model.Data.Email</td>
+                <td>@Model.Data.RegisterDate</td>
+                <td>@Model.Data.Event.ID</td>
+                <td>@Model.Data.Event.EventName</td>
+
+            </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+
+
