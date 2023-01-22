@@ -20,7 +20,6 @@ KEY SAVED FROM Controller
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                
                 <th>Register Date</th>
                 <th>EventID</th>
                 <th>Event</th>
@@ -35,22 +34,33 @@ KEY SAVED FROM Controller
                     <td>@item.RegisterDate</td>
                     <td>@item.Event.ID</td>    
                     <td>@item.Event.EventName</td>
-                    
                 </tr>
             }
             
         </table>
 
-        <form asp-action="SingleAttendee" asp-controller="SingleAttendee">
+        <form asp-controller="Home" asp-action="SingleAttendee" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <input type="submit" value="SearchAttendee" class="btn btn-primary" id="findAttendeeBtn" />
+                <input type="submit" value="SearchAttendeeNewPage" class="btn btn-primary" id="findBtn" />
+
+            </div>
+        </form>
+   
+
+        <form asp-controller="Home" asp-action="SingleAttendee">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="text" value="test" id="test" name="textboxName" />
+                <input type="submit" value="SearchAttendee2" class="btn btn-primary" id="findAttendeeBtn" />
 
             </div>
         </form>
 
         <div id="attendeeInformationArea">
             <p>Display Attendee Information here</p>
+
+            
         </div>
     </div>
 </div>

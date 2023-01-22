@@ -1,0 +1,5 @@
+﻿@model IEnumerable<Exam.Models.AttendeeResponse>
+
+@foreach( var item in Model){
+    @Html.Partial("SingleAttendee",item); // Error
+}
