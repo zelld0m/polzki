@@ -9,8 +9,10 @@
         <form method="get" asp-controller="Home" asp-action="UpdateAttendee">
             <label asp-for="Data.ID">Attendee ID:</label>
             <input type="text" id="id" asp-for="Data.ID" name="attendeeID" />
-            <input type="text" id="Name" asp-for="Data.ID" name="AttendeeName" />
-            <input type="text" id="EventID" asp-for="Data.ID" name="EventID" />
+            <label>ATTENDEE NAME</label>
+            <input type="text" id="Name" asp-for="Data.Name" name="AttendeeName" />
+            <label>Event ID</label>
+            <input type="text" id="EventID" asp-for="Data.Event.ID" name="EventID" />
             <input type="submit" value="Submit" />
 
         </form>

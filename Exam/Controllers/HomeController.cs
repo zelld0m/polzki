@@ -21,7 +21,7 @@ namespace Exam.Controllers
     public class HomeController : Controller
     {
         
-        public string key = "8fd332cc0045441cbbccbe6b88ea0fca"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
+        public string key = "c1c9f2ccb2814c32a17b55285f864677"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
         
 
         public IActionResult Event()
@@ -65,7 +65,6 @@ namespace Exam.Controllers
         {
             ViewBag.key = key;
             var str = ApiService.Get("https://api.polzki.com/api/attendees?key="+key);
-
             AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
             return View(attendeeResponse);
         }
@@ -78,7 +77,6 @@ namespace Exam.Controllers
         }
         public IActionResult UpdateAttendee(string AttendeeId, string AttendeeName, string EventID)
         {
-        //https://api.polzki.com/api/updateattendee?key=[YOUR_KEY_HERE]&AttendeeID=[ATTENDEEID]&Name=[ATTENDEE_NAME]&EventID=[EVENTID]
             var str = ApiService.Get("https://api.polzki.com/api/updateattendee?key=" + key + "&AttendeeID=" + AttendeeId + "&Name=" + AttendeeName + "&EventID=" + EventID + "");
             SingleAttendee UpdateAttendee = Newtonsoft.Json.JsonConvert.DeserializeObject<SingleAttendee>(str == null ? "" : str);
             return View(UpdateAttendee);
@@ -89,18 +87,13 @@ namespace Exam.Controllers
         public IActionResult SingleAttendee(String attendeeID)
         {
             ViewBag.key = key;
-            //https://api.polzki.com/api/attendee?key={{Key}}&attendeeid=63cbe9312437a73b71357db4
             var str = ApiService.Get("https://api.polzki.com/api/attendee?key="+key+"&attendeeid="+attendeeID);
-
             Models.SingleAttendee SingleAttendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.SingleAttendee>(str == null ? "" : str);
-            //AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
-
             return View(SingleAttendeeResponse);
         }
         public IActionResult AddAttendee(string AttendeeName, string Email, String EventID)
         {
             ViewBag.key = key;
-            //https://api.polzki.com/api/addattendee?key=[YOUR_KEY_HERE]&Name=[ATTENDEE_NAME]&Email=[EMAILADDRESS]&EventID=[EVENTID]
             var str = ApiService.Get("https://api.polzki.com/api/addattendee?key=" + key + "&Name=" +AttendeeName + "&Email=" + Email + "&EventID=" +EventID);
             Models.SingleAttendee AddAttendee = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.SingleAttendee>(str == null ? "" : str);
 
@@ -110,19 +103,11 @@ namespace Exam.Controllers
         public IActionResult DeleteAttendee(String AttendeeID)
         {
             ViewBag.key = key;
-            //https://api.polzki.com/api/deleteattendee?key=[YOUR_KEY_HERE]&AttendeeID=[ATTENDEEID]
             var str = ApiService.Get("https://api.polzki.com/api/deleteattendee?key=" + key + "&AttendeeID="+ AttendeeID);
             Models.SingleAttendee DeleteAttendee = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.SingleAttendee>(str == null ? "" : str);
 
             return View(DeleteAttendee);
         }
-        //public ActionResult AttendeesUsingPartialView()
-        //{
-        //    ViewBag.key = key;
-        //    var str = ApiService.Get("https://api.polzki.com/api/attendees?key=" + key);
-        //    AttendeeResponse attendeeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AttendeeResponse>(str == null ? "" : str);
-        //    return View(attendeeResponse);
-        //}
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
