@@ -21,7 +21,7 @@ namespace Exam.Controllers
     public class HomeController : Controller
     {
         
-        public string key = "c1c9f2ccb2814c32a17b55285f864677"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
+        public string key = "39731ff68bb34e85aed19bf3decae876"; // GET KEY FROM SITE  https://api.polzki.com/home/eventsapidocs click get your key Here
         
 
         public IActionResult Event()
